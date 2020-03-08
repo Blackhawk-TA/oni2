@@ -4,12 +4,14 @@ type callback = unit => unit;
 type sneakInfo = {
   node: ref(option(Revery.UI.node)),
   callback,
+  xOffset: int,
+  yOffset: int,
 };
 
 let _singleton = ref([]);
 
-let register = (node: ref(option(Revery.UI.node)), callback) => {
-  _singleton := [{node, callback}, ..._singleton^];
+let register = (node: ref(option(Revery.UI.node)), callback, xOffset, yOffset) => {
+  _singleton := [{node, callback, xOffset, yOffset}, ..._singleton^];
 };
 
 let unregister = (node: ref(option(Revery.UI.node))) => {

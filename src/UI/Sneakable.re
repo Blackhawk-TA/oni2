@@ -14,6 +14,8 @@ module Utility = Oni_Core.Utility;
 let%component make =
               (
                 ~style=[],
+                ~xOffset=0,
+                ~yOffset=0,
                 ~onClick=() => (),
                 ~onRightClick=() => (),
                 ~onAnyClick=_ => (),
@@ -40,8 +42,8 @@ let%component make =
       OnMount,
       () => {
         switch (onSneak) {
-        | Some(cb) => SneakRegistry.register(holder, cb)
-        | None => SneakRegistry.register(holder, onClick)
+        | Some(cb) => SneakRegistry.register(holder, cb, xOffset, yOffset)
+        | None => SneakRegistry.register(holder, onClick, xOffset, yOffset)
         };
 
         Some(
